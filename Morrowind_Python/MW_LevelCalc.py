@@ -5,22 +5,24 @@ class Character:
         self.name = name
         self.race = race
         self.gender = gender
+        self.definedClass = self.characterClass("x")
 
 
-    def createNewCharacter(self, name, race, gender):
+    def createNewCharacter(self):
         """Creates a default character stat board"""
         characterDict = {
-            "Name": name,
-            "Race": race,
-            "Gender": gender}
+            "Name": self.name,
+            "Race": self.race,
+            "Gender": self.gender}
 
         attributes = self.readAttributes() #dict of attributes
         skills = self.readSkills() #dict of skills
+
         for i in range(19):
             r = list(attributes[i].values())#return each line of the file as a list
             
             r_race = r[0].split("_")#split the first element of list to get race and gender
-            if(r_race[0] == self.getRace() and r_race[1] == self.getGender()): #checks if race and gender are in the list then updates character dictionary with appropriate attributes
+            if(r_race[0] == self.race and r_race[1] == self.gender): #checks if race and gender are in the list then updates character dictionary with appropriate attributes
                 characterDict.update({"Stats":{"Strength": int(r[1]), "Intelligence": int(r[2]), "Willpower": int(r[3]), "Agility": int(r[4]), "Speed": int(r[5]), "Endurance": int(r[6]), "Personality": int(r[7]), "Luck": int(r[8])}})
 
         #load default skills into stat board
@@ -41,7 +43,7 @@ class Character:
         "Redguard": {"Axe": 5, "Athletics": 5, "Blunt Weapon": 5, "Medium Armor": 5, "Long Blade": 15, "Heavy Armor": 5, "Short Blade": 5},
         "Bosmer": {"Acrobatics": 5, "Alchemy": 5, "Light Armor": 10, "Marksman": 15, "Sneak": 10}}
 
-        bonus_stats = racial_bonus.get(race) #returns dictionary of given race
+        bonus_stats = racial_bonus.get(self.race) #returns dictionary of given race
         
         #for each relevant skill in the dictionary, increment the skill value and update the character dict
         for i in bonus_stats:
@@ -71,11 +73,6 @@ class Character:
 
         return skillDict
 
-    def getRace(self):
-        return self.race
-    
-    def getGender(self):
-        return self.gender
 
     def calculateModifier(self):
         """Returns potential modifiers for attributes upon levelling up"""
@@ -87,8 +84,10 @@ class Character:
         """Updates character file with new stats"""
 
     #if user chooses a pre-defined class
-    class Class:
+    class characterClass:
+
         def __init__(self, choice):
+            #super(characterClass, self).__init__()
             self.choice = choice
 
         def readClass(self):
@@ -99,46 +98,88 @@ class Character:
                 attriDict = list(reader)
             return attriDict
 
-        def chooseClass(self, choice):
-            """Returns updated stats based on chosen class"""
+        def chooseClass(self):
+            """Returns a list of stats based on chosen class"""
             classes = self.readClass()
+            
+            for i in range(len(classes)):
+                l = list(classes[i].values())
+                if(l[0] == self.choice):
+                    return l
+                
+
+        def addClass(self, characterDict):
+            """Update character stats based on chosen class"""
+            characterClass = self.chooseClass()
+            attributes = characterClass[1].split("/")
+            major = characterClass[2].split("/")
+            minor = characterClass[3].split("/")
+            special = characterClass[4]
+
+            stats = characterDict.get("Stats") #returns the nested dictionary with attributes
+
+            #updates attributes
+            for i in attributes:
+                #print(i)
+                x = stats.get(i)+10
+                stats.update({i: x})
+            
+            #updates major skills
+            for i in major:
+                mjSkill = characterDict.get(i)
+                x = mjSkill + 25
+                characterDict.update({i: x})
+            
+            #updates minor skills
+            for i in minor:
+                miSkill = characterDict.get(i)
+                x = miSkill + 10
+                characterDict.update({i: x})
+
+            
+            #All 27 skills and the specialization they fall under
+            stealthSpecial = ["Acrobatics", "Light Armor", "Marksman", "Short Blade", "Sneak", "Speechcraft", "Mercantile", "Security", "Hand-to-hand"]
+            combatSpecial = ["Heavy Armor", "Medium Armor", "Spear", "Armorer", "Axe", "Blunt Weapon", "Long Blade", "Block", "Athletics"]
+            magicSpecial = ["Unarmored", "Illusion", "Alchemy", "Conjuration", "Enchant", "Restoration", "Mysticism", "Destruction", "Alteration"]
+
+            #updating skills based on specialization
+            for i in range(9):
+                if(special == "Stealth"):
+                    x = characterDict.get(stealthSpecial[i]) + 5
+                    characterDict.update({stealthSpecial[i]: x})
+
+                elif(special == "Combat"):
+                    x = characterDict.get(combatSpecial[i]) + 5
+                    characterDict.update({combatSpecial[i]: x})
+                else:
+                    x = characterDict.get(magicSpecial[i]) + 5
+                    characterDict.update({magicSpecial[i]: x})
 
 
         
     #if use creates a custom class
     class Custom:
-        def __init__(self, attributes, major, minor, special):
+        def __init__(self, className, attributes, major, minor, special):
+            self.className = className
             self.attributes = attributes
             self.major = major
             self.minor = minor
             self.special = special
-            #all but 'special' takes a list
+            #all but 'special' and 'className' take a list
 
-        def createCustomClass(self, favAttributes, Major, Minor, special):
+        def createCustomClass(self, favAttributes, Major, Minor, special, characterDict):
             """Returns updated stats based on choices made in custom class"""
-        
+            
     
 
-
+#driver code for testing
 
 def main():
-    entity = Character("Unknown", "Dunmer", "M")
-    entityDict = entity.createNewCharacter("Unknown", "Dunmer", "M")
+    entity = Character("Artemis Fayden", "Dunmer", "M")
+    entityDict = entity.createNewCharacter()
 
-    skills = entity.readSkills()
-    race = entity.readAttributes() #max index: 19
-
+    entityClass = entity.characterClass("Agent")
+    entityClass.addClass(entityDict)
 
     print(entityDict)
-    # for i in range(19):
-    #     r = list(skills[i].values())
-    #     print(r)
-    
-    # for i in entityDict:
-    #     print(i)
-
-    #print(skills)
-    #s = list(skills[0].values())
-    #print(s)
-
 main()
