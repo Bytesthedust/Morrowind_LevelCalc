@@ -18,6 +18,7 @@ Classes (from: https://en.uesp.net/wiki/Morrowind:Classes)
 Next is choosing your class. Every humanoid NPC, including your character, has a class which represents their occupation or what they are good at. The three parts of a class is their Specialization, Major/Minor skills, and Favoured Attributes. There are three Specializations, Magic, Combat, and Stealth, and any skills associated with that Specialization gets a +5 bonus and is quicker to level up. With Major/Minor skills, your character's proficiencies will start at 30 in each Major Skill and 15 in each Minor Skill. Miscellaneous Skills start at 5. These are the values before any bonuses from race or Specialization. The experience points required to increase a Skill are only 75% of normal for Major Skills, but they are increased to 125% of normal for Miscellaneous Skills. Each class "favors" two of the eight primary Attributes. Your character will start with ten extra points in the favored Attributes of their class, added to the values determined by their race and gender.
 
 Birthsigns (from: https://en.uesp.net/wiki/Morrowind:Birthsigns)
+
 Lastly, you will choose a birthsign. Birthsigns provide bonuses such as abilities(including bonuses to attributes), powers(1/day special spells), and spells.
 
 
