@@ -44,3 +44,7 @@ My objectives for what this program is able to do is;
 Future Goals:
 
 In the future, I hope to make the program more user-friendly with a better UI and hopefully a full app
+
+
+
+I am open to any comments on improving the program or if something should be added.
