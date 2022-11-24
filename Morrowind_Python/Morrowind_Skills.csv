@@ -1,0 +1,28 @@
+Skill, Value, Specialization, Attribute
+Heavy Armor,5, Combat,Endurance
+Medium Armor,5,Combat,Endurance
+Spear,5,Combat,Endurance
+Acrobatics,5,Stealth,Strength
+Armorer,5,Combat,Strength
+Axe,5,Combat,Strength
+Blunt Weapon,5,Combat,Strength
+Long Blade,5,Combat,Strength
+Block,5,Combat,Agility
+Light Armor,5,Stealth,Agility
+Marksman,5,Stealth,Agility
+Sneak,5,Stealth,Agility
+Athletics,5,Combat,Speed
+Hand-to-hand,5,Stealth,Speed
+Short Blade,5,Stealth,Speed
+Unarmored,5,Magic,Speed
+Illusion,5,Magic,Personality
+Mercantile,5,Stealth,Personality
+Speechcraft,5,Stealth,Personality
+Alchemy,5,Magic,Intelligence
+Conjuration,5,Magic,Intelligence
+Enchant,5,Magic,Intelligence
+Security,5,Stealth,Intelligence
+Alteration,5,Magic,Willpower
+Destruction,5,Magic,Willpower
+Mysticism,5,Magic,Willpower
+Restoration,5,Magic,Willpower

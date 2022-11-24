@@ -1,0 +1,22 @@
+Class,Attributes,Major,Minor,Special
+Acrobat,Agility/Endurance,Acrobatics/Athletics/Marksman/Sneak/Unarmored,Speechcraft/Alteration/Spear/Hand-to-hand/Light Armor,Stealth
+Agent,Personality/Agility,Speechcraft/Sneak/Acrobatics/Light Armor/Short Blade,Mercantile/Conjuration/Block/Unarmored/Illusion,Stealth
+Archer,Agility/Strength,Marksman/Long Blade/Block/Athletics/Light Armor,Unarmored/Spear/Restoration/Sneak/Medium Armor,Combat
+Assassin,Speed/Intelligence,Sneak/Marksman/Light Armor/Short Blade/Acrobatics,Security/Long Blade/Alchemy/Block/Athletics,Stealth
+Barbarian,Strength/Speed,Axe/Medium Armor/Blunt Weapon/Athletics/Block,Acrobatics/Light Armor/Armorer/Marksman/Unarmored,Combat
+Bard,Personality/Intelligence,Speechcraft/Alchemy/Acrobatics/Long Blade/Block,Mercantile/Illusion/Medium Armor/Enchant/Security,Stealth
+Battlemage,Intelligence/Strength,Alteration/Destruction/Conjuration/Axe/Heavy Armor,Mysticism/Long Blade/Marksman/Enchant/Alchemy,Magic
+Crusader,Agility/Strength,Blunt Weapon/Long Blade/Destruction/Heavy Armor/Block,Restoration/Armorer/Hand-to-hand/Medium Armor/Alchemy,Combat
+Healer,Willpower/Personality,Restoration/Mysticism/Alteration/Hand-to-hand/Speechcraft,Illusion/Alchemy/Unarmored/Light Armor/Blunt Weapon,Magic
+Knight,Strength/Personality,Long Blade/Axe/Speechcraft/Heavy Armor/Block,Restoration/Mercantile/Medium Armor/Enchant/Armorer,Combat
+Mage,Intelligence/Willpower,Mysticism/Destruction/Alteration/Illusion/Restoration,Enchant/Alchemy/Unarmored/Short Blade/Conjuration,Magic
+Monk,Agility/Willpower,Hand-to-hand/Unarmored/Athletics/Acrobatics/Sneak,Block/Marksman/Light Armor/Restoration/Blunt Weapon,Stealth
+Nightblade,Willpower/Speed,Mysticism/Illusion/Alteration/Sneak/Short Blade,Light Armor/Unarmored/Destruction/Marksman/Security,Magic
+Pilgrim,Personality/Endurance,Speechcraft/Mercantile/Marksman/Restoration/Medium Armor,Illusion/Hand-to-hand/Short Blade/Block/Alchemy,Stealth
+Rogue,Speed/Personality,Short Blade/Mercantile/Axe/Light Armor/Hand-to-hand,Block/Medium Armor/Speechcraft/Athletics/Long Blade,Combat
+Scout,Speed/Endurance,Sneak/Long Blade/Medium Armor/Athletics/Block,Marksman/Alchemy/Alteration/Light Armor/Unarmored,Combat
+Sorcerer,Intelligence/Endurance,Enchant/Conjuration/Mysticism/Destruction/Alteration,Illusion/Medium Armor/Heavy Armor/Marksman/Short Blade,Magic
+Spellsword,Willpower/Endurance,Block/Restoration/Long Blade/Destruction/Alteration,Blunt Weapon/Enchant/Alchemy/Medium Armor/Axe,Magic
+Thief,Speed/Agility,Security/Sneak/Acrobatics/Light Armor/Short Blade,Marksman/Speechcraft/Hand-to-hand/Mercantile/Athletics,Stealth
+Warrior,Strength/Endurance,Long Blade/Medium Armor/Heavy Armor/Athletics/Block,Armorer/Spear/Marksman/Axe/Blunt Weapon,Combat
+Witchhunter,Intelligence/Agility,Conjuration/Enchant/Alchemy/Light Armor/Marksman,Unarmored/Block/Blunt Weapon/Sneak/Mysticism,Magic
