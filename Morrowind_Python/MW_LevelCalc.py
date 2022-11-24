@@ -13,7 +13,8 @@ class Character:
         characterDict = {
             "Name": self.name,
             "Race": self.race,
-            "Gender": self.gender}
+            "Gender": self.gender,
+            "Class": ""}
 
         attributes = self.readAttributes() #dict of attributes
         skills = self.readSkills() #dict of skills
@@ -38,7 +39,7 @@ class Character:
         "Altmer": {"Alchemy": 10, "Alteration": 5, "Conjuration": 5, "Destruction": 10, "Enchant": 10, "Illusion": 5},
         "Imperial": {"Blunt Weapon": 5, "Hand-to-hand": 5, "Long Blade": 10, "Light Armor": 5, "Mercantile": 10, "Speechcraft": 10},
         "Khajiit": {"Acrobatics": 15, "Athletics": 5, "Hand-to-hand": 5, "Light Armor": 5, "Security": 5, "Sneak": 5, "Short Blade": 5},
-        "Nord": {"Axe": 10, "Blunt": 10, "Long Blade": 5, "Heavy Armor": 5, "Medium Armor": 10, "Spear": 5},
+        "Nord": {"Axe": 10, "Blunt Weapon": 10, "Long Blade": 5, "Heavy Armor": 5, "Medium Armor": 10, "Spear": 5},
         "Orc": {"Armorer": 10, "Axe": 5, "Block": 10, "Medium Armor": 10, "Heavy Armor": 10},
         "Redguard": {"Axe": 5, "Athletics": 5, "Blunt Weapon": 5, "Medium Armor": 5, "Long Blade": 15, "Heavy Armor": 5, "Short Blade": 5},
         "Bosmer": {"Acrobatics": 5, "Alchemy": 5, "Light Armor": 10, "Marksman": 15, "Sneak": 10}}
@@ -87,7 +88,6 @@ class Character:
     class characterClass:
 
         def __init__(self, choice):
-            #super(characterClass, self).__init__()
             self.choice = choice
 
         def readClass(self):
@@ -111,6 +111,7 @@ class Character:
         def addClass(self, characterDict):
             """Update character stats based on chosen class"""
             characterClass = self.chooseClass()
+            characterDict["Class"] = self.choice
             attributes = characterClass[1].split("/")
             major = characterClass[2].split("/")
             minor = characterClass[3].split("/")
@@ -142,7 +143,7 @@ class Character:
             combatSpecial = ["Heavy Armor", "Medium Armor", "Spear", "Armorer", "Axe", "Blunt Weapon", "Long Blade", "Block", "Athletics"]
             magicSpecial = ["Unarmored", "Illusion", "Alchemy", "Conjuration", "Enchant", "Restoration", "Mysticism", "Destruction", "Alteration"]
 
-            #updating skills based on specialization
+            #updating skills based on chose specialization
             for i in range(9):
                 if(special == "Stealth"):
                     x = characterDict.get(stealthSpecial[i]) + 5
@@ -165,21 +166,69 @@ class Character:
             self.major = major
             self.minor = minor
             self.special = special
-            #all but 'special' and 'className' take a list
+            #all but 'special' and 'className' takes a list
 
-        def createCustomClass(self, favAttributes, Major, Minor, special, characterDict):
+        def createCustomClass(self, characterDict):
             """Returns updated stats based on choices made in custom class"""
+            
+            characterDict["Class"] = self.className
+            
+            stats = characterDict.get("Stats") #returns the nested dictionary with attributes
+
+            for i in self.attributes:
+                x = stats.get(i)+10
+                stats.update({i: x})
+            
+            #updates major skills
+            for i in self.major:
+                mjSkill = characterDict.get(i)
+                x = mjSkill + 25
+                characterDict.update({i: x})
+            
+            #updates minor skills
+            for i in self.minor:
+                miSkill = characterDict.get(i)
+                x = miSkill + 10
+                characterDict.update({i: x})
+
+            
+            #All 27 skills and the specialization they fall under
+            stealthSpecial = ["Acrobatics", "Light Armor", "Marksman", "Short Blade", "Sneak", "Speechcraft", "Mercantile", "Security", "Hand-to-hand"]
+            combatSpecial = ["Heavy Armor", "Medium Armor", "Spear", "Armorer", "Axe", "Blunt Weapon", "Long Blade", "Block", "Athletics"]
+            magicSpecial = ["Unarmored", "Illusion", "Alchemy", "Conjuration", "Enchant", "Restoration", "Mysticism", "Destruction", "Alteration"]
+
+            #updating skills based on chosen specialization
+            for i in range(9):
+                if(self.special == "Stealth"):
+                    x = characterDict.get(stealthSpecial[i]) + 5
+                    characterDict.update({stealthSpecial[i]: x})
+
+                elif(self.special == "Combat"):
+                    x = characterDict.get(combatSpecial[i]) + 5
+                    characterDict.update({combatSpecial[i]: x})
+                else:
+                    x = characterDict.get(magicSpecial[i]) + 5
+                    characterDict.update({magicSpecial[i]: x})
+        
+
+
+           
+
             
     
 
 #driver code for testing
 
 def main():
-    entity = Character("Artemis Fayden", "Dunmer", "M")
+    entity = Character("Artemis Fayden", "Argonian", "M")
     entityDict = entity.createNewCharacter()
 
-    entityClass = entity.characterClass("Agent")
-    entityClass.addClass(entityDict)
+    #entityClass = entity.characterClass("Agent")
+    #entityClass.addClass(entityDict)
+    entityClass = entity.Custom("Berserker", ["Strength", "Endurance"],["Light Armor", "Athletics", "Axe", "Security", "Alchemy"], ["Blunt Weapon", "Block", "Armorer", "Marksman", "Mysticism"], "Combat")
+    entityClass.createCustomClass(entityDict)
 
     print(entityDict)
+
+    
 main()
